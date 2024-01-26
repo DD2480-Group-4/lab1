@@ -1,3 +1,6 @@
+package decide;
+
+
 public record Parameters (
     double LENGTH1,
     double LENGTH2,
