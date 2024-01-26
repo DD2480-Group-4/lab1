@@ -38,7 +38,33 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC1: Function that verifies that at least one set of three consecutive
+     * data points in POINTS cannot all be contained within or on a circle of radius PARAMETERS.RADIUS1.
+     *
+     * @return true if the circumradius of three consecutive data points is
+     *         greater than RADIUS1, false otherwise
+     */
     public boolean LIC1() {
+
+        for(int i = 0; i < NUMPOINTS - 2; i++)
+        {
+            Point2D.Double p1 = POINTS[i];
+            Point2D.Double p2 = POINTS[i+1];
+            Point2D.Double p3 = POINTS[i+2];
+
+            double a = p1.distance(p2);
+            double b = p2.distance(p3);
+            double c = p3.distance(p1);
+
+            double area = Utilities.calculateTriangleArea(p1, p2, p3);
+
+            double circumradius = (a * b * c) / (4 * area);
+
+            if (circumradius > PARAMETERS.RADIUS1()) {
+                return true;
+            }
+        }
         return false;
     }
 
