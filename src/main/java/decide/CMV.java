@@ -135,7 +135,23 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC5: Function that verifies that at least one set of two consecutive
+     * data points in POINTS fulfills the condition that the x value of
+     * the first point is greater than the x value second point.
+     *
+     * @return true if the x value of the first point is greater than
+     *         the x value second point, false otherwise
+     */
     public boolean LIC5() {
+
+        for(int i = 0; i < NUMPOINTS - 1; i++)
+        {
+            if ((POINTS[i+1].x - POINTS[i].x) < 0)
+            {
+                return true;
+            }
+        }
         return false;
     }
 
