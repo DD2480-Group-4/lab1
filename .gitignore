@@ -29,6 +29,8 @@ out/
 !**/src/test/**/out/
 *.iml
 .idea
+*.iws
+*.ipr
 
 ### Eclipse ###
 .apt_generated
@@ -54,3 +56,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Gradle ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+
