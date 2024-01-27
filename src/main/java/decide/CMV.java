@@ -68,7 +68,51 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC2: Function that verifies that there exists a set of three consecutive data points
+     * that forms and angle such that
+     * angle < (PI - PARAMETERS.EPSILON)
+     * or
+     * angle > (PI + PARAMETERS.EPSILON)
+     *
+     * @return true if the angle of the three consecutive data points is greater than PI + EPSILON
+     *         or lesser than PI - EPSILON, false otherwise
+     */
     public boolean LIC2() {
+
+        double PI = 3.1415926535;
+
+        for(int i = 0; i < NUMPOINTS - 2; i++)
+        {
+            Point2D.Double p1 = POINTS[i];
+            Point2D.Double p2 = POINTS[i+1];
+            Point2D.Double p3 = POINTS[i+2];
+
+            if (p2 == p1 || p2 == p3) {
+                continue;
+            }
+
+            double vector1x = p1.x - p2.x;
+            double vector1y = p1.y - p2.y;
+
+            double vector2x = p3.x - p2.x;
+            double vector2y = p3.y - p2.y;
+
+            double dotProduct = vector1x * vector2x + vector1y * vector2y;
+
+            double magnitude1 = Math.sqrt(vector1x * vector1x + vector1y * vector1y);
+            double magnitude2 = Math.sqrt(vector2x * vector2x + vector2y * vector2y);
+
+            double cosTheta = dotProduct / (magnitude1 * magnitude2);
+
+            double angle = Math.toDegrees(Math.acos(cosTheta));
+
+            if (angle < (PI - PARAMETERS.EPSILON()) || angle > (PI + PARAMETERS.EPSILON()))
+            {
+                return true;
+            }
+        }
+
         return false;
     }
 
