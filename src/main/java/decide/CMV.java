@@ -312,7 +312,54 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC13: Function that verifies that at least one set of three data points
+     * separated by exactly PARAMETERS.A_PTS and PARAMETERS.B_PTS
+     * consecutive intervening points, respectively, cannot all be contained
+     * within or on a circle of radius PARAMETERS.RADIUS1.
+     * Also verifies that at least one set of three data points given the same
+     * constrictions, can all be contained within or on a circle of radius PARAMETERS.RADIUS2.
+     *
+     * @return true if the circumradius of a set of three data points is
+     *         greater than RADIUS1 and the circumradius of a set of three data points is
+     *         lesser or equal to RADIUS2 , false if NUMPOINTS < 5 or otherwise
+     */
     public boolean LIC13() {
+
+        if (NUMPOINTS < 5)
+        {
+            return false;
+        }
+
+        boolean satisfiesR1 = false;
+        boolean satisfiesR2 = false;
+
+        for(int i = 0; i < NUMPOINTS - (PARAMETERS.A_PTS() + PARAMETERS.B_PTS() + 2); i++) {
+            Point2D.Double p1 = POINTS[i];
+            Point2D.Double p2 = POINTS[i + PARAMETERS.A_PTS() + 1];
+            Point2D.Double p3 = POINTS[i + PARAMETERS.A_PTS() + PARAMETERS.B_PTS() + 2];
+
+            double a = p1.distance(p2);
+            double b = p2.distance(p3);
+            double c = p3.distance(p1);
+
+            double area = Utilities.calculateTriangleArea(p1, p2, p3);
+
+            double circumradius = (a * b * c) / (4 * area);
+
+            if (circumradius > PARAMETERS.RADIUS1()) {
+                satisfiesR1 = true;
+            }
+
+            if (circumradius <= PARAMETERS.RADIUS2()) {
+                satisfiesR2 = true;
+            }
+
+            if (satisfiesR1 && satisfiesR2) {
+                return true;
+            }
+        }
+
         return false;
     }
 
