@@ -158,5 +158,76 @@ public class CMVTests {
                 new Point2D.Double(2, 0)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC5()).isFalse();
+    }    
+	
+	@Test
+    @DisplayName("LIC6: satisfied first condition returns true")
+    void LIC6_DataPointFurtherAwayThanDist_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,0,0,10,0,0,5,0,0,0,0,0,0,0,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(1, 1),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(2, 2),
+                new Point2D.Double(0, 10.1),
+                new Point2D.Double(3, -3),
+                new Point2D.Double(10, 0),
+                new Point2D.Double(1, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC6()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("LIC6: satisfied second condition returns true")
+    void LIC6_SumDistDataPointFurtherAwayThanDist_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,0,0,5,0,0,5,0,0,0,0,0,0,0,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 2),
+                new Point2D.Double(0, 3),
+                new Point2D.Double(0, 2),
+                new Point2D.Double(0, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC6()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("LIC6: unsatisfied first condition returns false")
+    void LIC6_NoDataPointFurtherAwayThanDist_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,0,0,10,0,0,5,0,0,0,0,0,0,0,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(1, 1),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(2, 2),
+                new Point2D.Double(3, 10),
+                new Point2D.Double(3, -3),
+                new Point2D.Double(10, 0),
+                new Point2D.Double(1, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("LIC6: unsatisfied second condition returns false")
+    void LIC6_NotSumDistAllDataPointFurtherAwayThanDist_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,0,0,5,0,0,5,0,0,0,0,0,0,0,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 2),
+                new Point2D.Double(0, 1),
+                new Point2D.Double(0, 2),
+                new Point2D.Double(0, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("LIC6: unsatisfied amount of numpoints returns false")
+    void LIC6_NumpointsLessThanThree_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,0,0,5,0,0,3,0,0,0,0,0,0,0,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(10, 10)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
     }
 }
