@@ -375,8 +375,35 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC12: Function that verifies that there is at least one set of consecutive
+     * points separated by PARAMETERS.K_PTS apart where the distance between them
+     * exceeds PARAMETERS.LENGTH1. Also, there exists a similar pair where the
+     * distance exceeds PARAMETERS.LENGTH2.
+     *
+     * @return true if both of the conditions mentioned above hold, false otherwise
+     */
     public boolean LIC12() {
-        return false;
+        if (NUMPOINTS < 3) {
+            return false;
+        }
+        if (PARAMETERS.LENGTH2() < 0) {
+            return false;
+        }
+
+        boolean cond1 = false, cond2 = false;
+        for (int i = 0; i < POINTS.length - PARAMETERS.K_PTS() - 1; i++) {
+            Point2D.Double p1 = POINTS[i];
+            Point2D.Double p2 = POINTS[i + PARAMETERS.K_PTS() + 1];
+            if (p1.distance(p2) > PARAMETERS.LENGTH1()) {
+                cond1 = true;
+            }
+            if (p1.distance(p2) < PARAMETERS.LENGTH2()) {
+                cond2 = true;
+            }
+        }
+
+        return cond1 && cond2;
     }
 
     /**
