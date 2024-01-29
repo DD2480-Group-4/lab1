@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.geom.Point2D;
 
 public class CMVTests {
-
+    
     @Test
     @DisplayName("LIC0: satisfied condition returns true")
     void LIC0_ConsecutiveDataPointsFurtherThanLength_ReturnsTrue()
@@ -419,5 +419,72 @@ public class CMVTests {
                 new Point2D.Double(-2, 1)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC13()).isFalse();
+    }
+
+    @Test
+    @DisplayName("LIC14: satisfied conditions returns true")
+    void LIC14_SeparatedDataPointsHasTriangularAreaGreaterThanArea1AndLesserThanArea2_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,1.99,0.51,0,0,0,0,0,0,0,0,0,2,3,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-1, -1),
+                new Point2D.Double(2, 8),
+                new Point2D.Double(4, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-2, 2),
+                new Point2D.Double(-2, 5),
+                new Point2D.Double(2, 1),
+                new Point2D.Double(-1, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC14()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("LIC14: unsatisfied first condition returns false")
+    void LIC14_SeparatedDataPointsHasTriangularAreaGreaterThanArea1AndLesserThanArea2_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,2.01,0.51,0,0,0,0,0,0,0,0,0,2,3,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-1, -1),
+                new Point2D.Double(2, 8),
+                new Point2D.Double(4, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-2, 2),
+                new Point2D.Double(-2, 5),
+                new Point2D.Double(2, 1),
+                new Point2D.Double(-1, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC14()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("LIC14: unsatisfied second condition returns false")
+    void LIC14_SeparatedDataPointsHasTriangularAreaGreaterThanArea1AndNotLesserThanArea2_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,1.99,0.49,0,0,0,0,0,0,0,0,0,2,3,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-1, -1),
+                new Point2D.Double(2, 8),
+                new Point2D.Double(4, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-2, 2),
+                new Point2D.Double(-2, 5),
+                new Point2D.Double(2, 1),
+                new Point2D.Double(-1, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC14()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("LIC14: unsatisfied amount of numpoints returns false")
+    void LIC14_NumpointsLessThanFive_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1,1,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(1, 1),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(2, 2),
+                new Point2D.Double(1, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC14()).isEqualTo(false);
     }
 }
