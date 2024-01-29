@@ -133,8 +133,35 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC4: Function that verifies that there is at least one set of PARAMETERS.Q_PTS
+     * consecutive data points that lie in more than PARAMETERS.QUADS quadrants.
+     *
+     * @return true if more than QUADS quadrants contain data points, false otherwise.
+     */
     public boolean LIC4() {
-        return false;
+        if (PARAMETERS.Q_PTS() < 2 || PARAMETERS.Q_PTS() > NUMPOINTS) {
+            return false;
+        }
+        if (PARAMETERS.QUADS() < 1 || PARAMETERS.QUADS() > 3 || PARAMETERS.QUADS() > POINTS.length) {
+            return false;
+        }
+
+        boolean[] filledQuadrants = new boolean[4];
+        for (int i = 0; i < POINTS.length - PARAMETERS.Q_PTS() + 1; i++) {
+            Arrays.fill(filledQuadrants, false);
+            for (int j = i; j < i + PARAMETERS.Q_PTS(); j++) {
+                int quadrantNumber = Utilities.getQuadrant(POINTS[j]);
+                filledQuadrants[quadrantNumber - 1] = true;
+            }
+        }
+
+        int filledQuadrantsCounter = 0;
+        for (boolean filled : filledQuadrants) {
+            filledQuadrantsCounter += filled ? 1 : 0;
+        }
+
+        return filledQuadrantsCounter > PARAMETERS.QUADS();
     }
 
     /**

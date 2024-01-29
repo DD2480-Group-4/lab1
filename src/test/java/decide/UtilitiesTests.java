@@ -32,4 +32,40 @@ public class UtilitiesTests {
 
         Assertions.assertThat(area).isEqualTo(4.275);
     }
+
+    @Test
+    @DisplayName("getQuadrant success")
+    void getQuadrant_CalculatesQuadrantNumberCorrect() {
+        Point2D.Double[] p = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 1),
+                new Point2D.Double(1, 0),
+                new Point2D.Double(0.3, 4),
+                new Point2D.Double(-1, 0),
+                new Point2D.Double(-0.3, 4),
+                new Point2D.Double(0, -1),
+                new Point2D.Double(-0.3, -4),
+                new Point2D.Double(0.3, -4)};
+
+        int[] expectedQuadrants = {1, 1, 1, 1, 2, 2, 3, 3, 4};
+        for (int i = 0; i < p.length; i++) {
+            Assertions.assertThat(Utilities.getQuadrant(p[i])).isEqualTo(expectedQuadrants[i]);
+        }
+    }
+
+    @Test
+    @DisplayName("getQuadrant fail")
+    void getQuadrant_CalculatesQuadrantNumberIncorrect() {
+        Point2D.Double[] p = {
+                new Point2D.Double(-13, -27),
+                new Point2D.Double(13, -27),
+                new Point2D.Double(-13, 27),
+                new Point2D.Double(13, 27)};
+
+        int[] expectedQuadrants = {1, 2, 3, 4};
+        for (int i = 0; i < p.length; i++) {
+            Assertions.assertThat(Utilities.getQuadrant(p[i])).isNotEqualTo(expectedQuadrants[i]);
+        }
+    }
+
 }
