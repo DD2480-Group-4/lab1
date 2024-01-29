@@ -12,19 +12,20 @@ public class Utilities {
     /**
      * Finds all 3 consecutive points, where the first 2 have firstSpacing points between them and
      * the last 2 have secondSpacing points between them.
-     * Then verifies that at least one of these trios of points forms a triangle that matches a given condition.
+     * Then verifies that at least one of these trios of points forms a triangle that has an area larger than
+     * requiredArea.
      *
      * @param points The array containing the points.
      * @param numPoints The number of points in the array. Must not be larger than the size of the array.
      * @param firstSpacing The number of points between the first and the second point.
      * @param secondSpacing The number of points between the second and third point.
-     * @param areaChecker Function returning true when the given triangle area meets the required condition.
+     * @param requiredArea If the area is smaller than this, the found triangle is too small.
      * @return True if the above conditions are met.
      *         False if not, or if numPoints < 5, firstSpacing < 1, secondSpacing < 1 or if
      *         firstSpacing + secondSpacing > numPoints - 3
      */
     public static boolean checkPointsForTriangle(
-            Point2D.Double[] points, int numPoints, int firstSpacing, int secondSpacing, DoublePredicate areaChecker
+            Point2D.Double[] points, int numPoints, int firstSpacing, int secondSpacing, double requiredArea
     ) {
         if (numPoints < 5 || firstSpacing < 1 || secondSpacing < 1 || firstSpacing + secondSpacing > numPoints - 3) {
             return false;
@@ -36,7 +37,7 @@ public class Utilities {
             double area = Utilities.calculateTriangleArea(
                     points[firstPoint], points[secondPoint], points[thirdPoint]
             );
-            if (areaChecker.test(area)) {
+            if (area > requiredArea) {
                 return true;
             }
         }
