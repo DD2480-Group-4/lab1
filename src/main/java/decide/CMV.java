@@ -363,6 +363,16 @@ public class CMV {
         return false;
     }
 
+    /**
+     * Finds all 3 consecutive points, where the first 2 have {@link Parameters#E_PTS()} points between them and
+     * the last 2 have {@link Parameters#F_PTS()} points between them.
+     * Then verifies that at least one of these trios of points forms a triangle that has an area larger than
+     * {@link Parameters#AREA1()}, and that at least one of them has an area smaller than {@link Parameters#AREA2()}.
+     *
+     * @return True if the above conditions are met.
+     *         False if not, or if NUMPOINTS < 5, {@link Parameters#E_PTS()} < 1, {@link Parameters#F_PTS()} < 1,
+     *         {@link Parameters#E_PTS()} + {@link Parameters#F_PTS()} > NUMPOINTS - 3, or if {@link Parameters#AREA2()} < 0.
+     */
     public boolean LIC14() {
         if (PARAMETERS.AREA2() < 0) {
             return false;
