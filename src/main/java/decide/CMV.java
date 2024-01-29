@@ -364,7 +364,14 @@ public class CMV {
     }
 
     public boolean LIC14() {
-        return false;
+        if (PARAMETERS.AREA2() < 0) {
+            return false;
+        }
+        return Utilities.checkPointsForTriangle(
+                POINTS, NUMPOINTS, PARAMETERS.E_PTS(), PARAMETERS.F_PTS(), area -> area > PARAMETERS.AREA1()
+        ) && Utilities.checkPointsForTriangle(
+                POINTS, NUMPOINTS, PARAMETERS.E_PTS(), PARAMETERS.F_PTS(), area -> area < PARAMETERS.AREA2()
+        );
     }
 
 }
