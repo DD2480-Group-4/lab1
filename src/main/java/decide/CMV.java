@@ -288,23 +288,9 @@ public class CMV {
      *         {@link Parameters#E_PTS()} + {@link Parameters#F_PTS()} > NUMPOINTS - 3
      */
     public boolean LIC10() {
-        int e_pts = PARAMETERS.E_PTS();
-        int f_pts = PARAMETERS.F_PTS();
-        if (NUMPOINTS < 5 || e_pts < 1 || f_pts < 1 || e_pts + f_pts > NUMPOINTS - 3) {
-            return false;
-        }
-        //Important to double-check for off-by-one errors!
-        int pointLimit = NUMPOINTS - (e_pts + f_pts + 3) + 1;
-        for (int firstPoint = 0; firstPoint < pointLimit; firstPoint++) {
-            int secondPoint = firstPoint + e_pts + 1;
-            int thirdPoint = secondPoint + f_pts + 1;
-            double area = Utilities.calculateTriangleArea(POINTS[firstPoint], POINTS[secondPoint], POINTS[thirdPoint]);
-            if (area > PARAMETERS.AREA1()) {
-                return true;
-            }
-        }
-
-        return false;
+        return Utilities.checkPointsForTriangle(
+                POINTS, NUMPOINTS, PARAMETERS.E_PTS(), PARAMETERS.F_PTS(), area -> area > PARAMETERS.AREA1()
+        );
     }
 
     public boolean LIC11() {
