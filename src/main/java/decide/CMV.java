@@ -250,7 +250,43 @@ public class CMV {
         return false;
     }
 
+    /**
+     * LIC8: Function that verifies that there exists at least one set of three data
+     * points separated by exactly PARAMETERS.A_PTS and PARAMETERS.B_PTS consecutive
+     * intervening points. These cannot be contained within a circle of radius
+     * PARAMETERS.RADIUS1.
+     *
+     * @return true if there is a set of three data points that satisfies
+     *         the above conditions, false otherwise.
+     */
     public boolean LIC8() {
+        if (NUMPOINTS < 5) {
+            return false;
+        }
+        if (PARAMETERS.A_PTS() < 1 || PARAMETERS.B_PTS() < 1) {
+            return false;
+        }
+        if (PARAMETERS.A_PTS() + PARAMETERS.B_PTS() > NUMPOINTS - 3) {
+            return false;
+        }
+
+        for (int i = 0; i < POINTS.length - PARAMETERS.A_PTS() - PARAMETERS.B_PTS(); i++) {
+            Point2D.Double p1 = POINTS[i];
+            Point2D.Double p2 = POINTS[i + PARAMETERS.A_PTS()];
+            Point2D.Double p3 = POINTS[i + PARAMETERS.A_PTS() + PARAMETERS.B_PTS()];
+
+            double a = p1.distance(p2);
+            double b = p2.distance(p3);
+            double c = p3.distance(p1);
+
+            double area = Utilities.calculateTriangleArea(p1, p2, p3);
+            double circumradius = (a * b * c) / (4 * area);
+
+            if (circumradius > PARAMETERS.RADIUS1()) {
+                return true;
+            }
+        }
+
         return false;
     }
 
