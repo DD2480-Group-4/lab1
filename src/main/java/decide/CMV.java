@@ -1,6 +1,8 @@
 package decide;
 
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.util.Arrays;
 
 public class CMV {
     private final int NUMPOINTS;
@@ -155,7 +157,49 @@ public class CMV {
         return false;
     }
 
+    /**
+     * Verifies the presence of {@link Parameters#N_PTS()} consecutive data points where at least one of them is further
+     * away than {@link Parameters#DIST()} from either:
+     * 1. The line formed between the first and the last points in the sequence of consecutive data points,
+     *    if they are different.
+     * 2. The summarised distance from the first point in the sequence of consecutive data points
+     *    to every other point in the sequence (except the last one, since it would be 0),
+     *    if the first and last points are the same.
+     *
+     * @return True if a point matching the conditions above are met.
+     *         Returns false if no such point is found, or if {@link Parameters#N_PTS()} < 3,
+     *         {@link Parameters#DIST()} < 0, or {@link Parameters#N_PTS()} > NUMPOINTS
+     */
     public boolean LIC6() {
+        int n_pts = PARAMETERS.N_PTS();
+        double dist = PARAMETERS.DIST();
+        if (n_pts < 3 || n_pts > NUMPOINTS || dist < 0) {
+            return false;
+        }
+        //Don't forget to add a test that checks that this is not an off-by-one error!
+        int pointLimit = NUMPOINTS - n_pts + 1;
+        for (int firstPointIndex = 0; firstPointIndex < pointLimit; firstPointIndex++) {
+            var firstPoint = POINTS[firstPointIndex];
+            int lastPointIndex = firstPointIndex+n_pts-1;
+            var lastPoint = POINTS[lastPointIndex];
+            if (firstPoint.equals(lastPoint)) {
+                //We skip the first and last points because their distance to the coincident point will be 0.
+                //Again, double check for off-by-one errors!
+                var totalDist = Arrays.stream(POINTS, firstPointIndex+1, lastPointIndex-1).mapToDouble(
+                    point -> point.distance(firstPoint)
+                ).reduce(Double::sum).orElse(0);
+                if (totalDist > dist) {
+                    return true;
+                }
+            } else {
+                var line = new Line2D.Double(firstPoint, lastPoint);
+                for (int i = firstPointIndex; i < lastPointIndex; i++) {
+                    if (line.ptLineDist(POINTS[i]) > dist) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
