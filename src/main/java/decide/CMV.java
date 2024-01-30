@@ -21,7 +21,20 @@ public class CMV {
         };
     }
 
+    /**
+     * LIC0: Function that verifies that at least one set of two consecutive
+     * data points in POINTS are a distance greater than PARAMETERS.LENGTH1
+     * apart.
+     *
+     * @return true if distance between two consecutive data points is
+     *         greater than LENGTH1, false otherwise
+     */
     public boolean LIC0() {
+        for(int i = 0; i < NUMPOINTS-1; i++) {
+            if(Point2D.distance(POINTS[i].x, POINTS[i].y, POINTS[i+1].x, POINTS[i+1].y) > PARAMETERS.LENGTH1()) {
+                return true;
+            }
+        }
         return false;
     }
 
