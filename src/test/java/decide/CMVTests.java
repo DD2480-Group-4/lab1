@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.geom.Point2D;
 
 public class CMVTests {
-    
+
     @Test
     @DisplayName("LIC0: satisfied condition returns true")
     void LIC0_ConsecutiveDataPointsFurtherThanLength_ReturnsTrue()
@@ -106,8 +106,8 @@ public class CMVTests {
 		)
 		);
 		Assertions.assertThat(cmv.LIC2()).isFalse();
-	}	
-	
+	}
+
 	@Test
 	@DisplayName("LIC3: satisfied returns true")
 	void LIC3_Simple_ReturnsTrue() {
@@ -136,8 +136,8 @@ public class CMVTests {
 				0,0,0,0,0,0,0,0,0,0
 		));
 		Assertions.assertThat(cmv.LIC3()).isFalse();
-	}   
-    
+	}
+
     @Test
     @DisplayName("LIC4: satisfied condition returns true")
     void LIC4_PointsLieInMoreThanQuadQuadrants_ReturnsTrue()
@@ -169,7 +169,7 @@ public class CMVTests {
 
         Assertions.assertThat(cmv.LIC4()).isFalse();
     }
-	
+
 	@Test
     @DisplayName("LIC5: satisfied condition returns true")
     void LIC5_distanceBetweenNextPointAndCurrentPointLessThanZero_ReturnsTrue() {
@@ -190,8 +190,8 @@ public class CMVTests {
                 new Point2D.Double(2, 0)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC5()).isFalse();
-    }    
-	
+    }
+
 	@Test
     @DisplayName("LIC6: satisfied first condition returns true")
     void LIC6_DataPointFurtherAwayThanDist_ReturnsTrue() {
@@ -261,8 +261,8 @@ public class CMVTests {
                 new Point2D.Double(10, 10)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
-    } 
-	
+    }
+
 	@Test
 	@DisplayName("LIC7: satisfied returns true")
 	void LIC7_GeneralCase_ReturnsTrue() {
@@ -292,7 +292,51 @@ public class CMVTests {
 		));
 		Assertions.assertThat(cmv.LIC7()).isFalse();
 	}
-	
+
+	@Test
+	@DisplayName("LIC8: satisfied condition returns true")
+	void LIC8_SeparatedPointsOutsideOfRadius_ReturnsTrue() {
+		Point2D.Double[] POINTS = new Point2D.Double[] {
+				new Point2D.Double(-6, 3),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(-3, 2),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 3),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+		};
+
+		Parameters PARAMETERS = new Parameters(0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0);
+		CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+
+		Assertions.assertThat(cmv.LIC8()).isTrue();
+	}
+
+	@Test
+	@DisplayName("LIC8: satisfied condition returns false")
+	void LIC8_SeparatedPointsInsideOfRadius_ReturnsFalse() {
+		Point2D.Double[] POINTS = new Point2D.Double[] {
+				new Point2D.Double(-6, 3),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(-3, 2),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 3),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 0),
+		};
+
+		Parameters PARAMETERS = new Parameters(0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0);
+		CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+
+		Assertions.assertThat(cmv.LIC8()).isFalse();
+	}
+
 	@Test
     @DisplayName("LIC9: satisfied general-case")
     void LIC9_GeneralCase_ReturnsTrue() {
@@ -329,7 +373,7 @@ public class CMVTests {
         )
         );
         Assertions.assertThat(cmv.LIC9()).isFalse();
-    }	
+    }
 
 	@Test
     @DisplayName("LIC10: satisfied condition returns true")
@@ -376,8 +420,8 @@ public class CMVTests {
                 new Point2D.Double(1, 1)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC10()).isEqualTo(false);
-    }	
-    
+    }
+
     @Test
 	@DisplayName("LIC11: satisfied returns true")
 	void LIC11_Simple_ReturnsTrue() {
@@ -406,8 +450,8 @@ public class CMVTests {
 				0,0,0,0,0,0,0,0,0,1
 		));
 		Assertions.assertThat(cmv.LIC11()).isFalse();
-	}    
-    
+	}
+
     @Test
     @DisplayName("LIC13: both conditions satisfied returns true")
     void LIC13_threePointsCannotFitInCircleWithRADIUS1butRADIUS2_ReturnsTrue() {
@@ -518,6 +562,6 @@ public class CMVTests {
                 new Point2D.Double(1, 1)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC14()).isEqualTo(false);
-    }   
+    }
 
 }
