@@ -176,7 +176,6 @@ public class CMV {
         if (n_pts < 3 || n_pts > NUMPOINTS || dist < 0) {
             return false;
         }
-        //Don't forget to add a test that checks that this is not an off-by-one error!
         int pointLimit = NUMPOINTS - n_pts + 1;
         for (int firstPointIndex = 0; firstPointIndex < pointLimit; firstPointIndex++) {
             var firstPoint = POINTS[firstPointIndex];
@@ -184,8 +183,7 @@ public class CMV {
             var lastPoint = POINTS[lastPointIndex];
             if (firstPoint.equals(lastPoint)) {
                 //We skip the first and last points because their distance to the coincident point will be 0.
-                //Again, double check for off-by-one errors!
-                var totalDist = Arrays.stream(POINTS, firstPointIndex+1, lastPointIndex-1).mapToDouble(
+                var totalDist = Arrays.stream(POINTS, firstPointIndex+1, lastPointIndex).mapToDouble(
                     point -> point.distance(firstPoint)
                 ).reduce(Double::sum).orElse(0);
                 if (totalDist > dist) {
