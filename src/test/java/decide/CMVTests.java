@@ -452,6 +452,40 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC11()).isFalse();
 	}
 
+	@Test
+	@DisplayName("LIC12: satisfied condition returns true")
+	void LIC12_BothConditionsTrue_ReturnsTrue()
+	{
+		Point2D.Double[] POINTS = new Point2D.Double[] {
+				new Point2D.Double(0,4),
+				new Point2D.Double(0,0),
+				new Point2D.Double(0, 8),
+				new Point2D.Double(6,6),
+		};
+
+		Parameters PARAMETERS = new Parameters(7, 5, 0, 0, 0, 0, 0, 0, 0,02, 0, 1, 0, 0, 0, 0, 0, 0, 0);
+		CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+
+		Assertions.assertThat(cmv.LIC12()).isTrue();
+	}
+
+	@Test
+	@DisplayName("LIC12: satisfied condition returns false")
+	void LIC12_FirstConditionsFalse_ReturnsFalse()
+	{
+		Point2D.Double[] POINTS = new Point2D.Double[] {
+				new Point2D.Double(0,4),
+				new Point2D.Double(0,0),
+				new Point2D.Double(0, 8),
+				new Point2D.Double(6,6),
+		};
+
+		Parameters PARAMETERS = new Parameters(10, 5, 0, 0, 0, 0, 0, 0, 0,02, 0, 1, 0, 0, 0, 0, 0, 0, 0);
+		CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+
+		Assertions.assertThat(cmv.LIC12()).isFalse();
+	}
+
     @Test
     @DisplayName("LIC13: both conditions satisfied returns true")
     void LIC13_threePointsCannotFitInCircleWithRADIUS1butRADIUS2_ReturnsTrue() {
