@@ -229,7 +229,37 @@ public class CMVTests {
                 new Point2D.Double(10, 10)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
-    }    
+    } 
+	
+	@Test
+	@DisplayName("LIC7: satisfied returns true")
+	void LIC7_GeneralCase_ReturnsTrue() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(0, 0),
+				new Point2D.Double(10, 0),
+				new Point2D.Double(10.1, 0)
+		};
+		CMV cmv = new CMV(points.length, points, new Parameters(
+				10,0,0,0,0, 0,0,0,0,
+				0,0,1,0,0,0,0,0,0,0
+		));
+		Assertions.assertThat(cmv.LIC7()).isTrue();
+	}
+
+	@Test
+	@DisplayName("LIC7: unsatisfied returns false")
+	void LIC7_GeneralCase_ReturnsFalse() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(0, 0),
+				new Point2D.Double(10.1, 0),
+				new Point2D.Double(10, 0)
+		};
+		CMV cmv = new CMV(points.length, points, new Parameters(
+				10,0,0,0,0, 0,0,0,0,
+				0,0,1,0,0,0,0,0,0,0
+		));
+		Assertions.assertThat(cmv.LIC7()).isFalse();
+	}
 	
 	@Test
     @DisplayName("LIC9: satisfied general-case")
@@ -267,5 +297,5 @@ public class CMVTests {
         )
         );
         Assertions.assertThat(cmv.LIC9()).isFalse();
-    }
+    }	
 }
