@@ -351,7 +351,7 @@ public class CMVTests {
 	void LIC11_Simple_ReturnsTrue() {
 		var points = new Point2D.Double[] {
 				new Point2D.Double(1, 0),
-				new Point2D.Double(0, 0),
+				new Point2D.Double(2, 0),
 				new Point2D.Double(0, 0)
 		};
 		CMV cmv = new CMV(points.length, points, new Parameters(
@@ -366,7 +366,7 @@ public class CMVTests {
 	void LIC11_Simple_ReturnsFalse() {
 		var points = new Point2D.Double[] {
 				new Point2D.Double(0, 0),
-				new Point2D.Double(0, 0),
+				new Point2D.Double(-1, 0),
 				new Point2D.Double(0, 0)
 		};
 		CMV cmv = new CMV(points.length, points, new Parameters(
