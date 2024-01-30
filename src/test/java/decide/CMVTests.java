@@ -21,7 +21,7 @@ public class CMVTests {
 
     @Test
     @DisplayName("LIC0: satisfied condition returns false")
-    void LIC0_ConsecutiveDataPointsCloserThanLength_ReturnsTrue()
+    void LIC0_ConsecutiveDataPointsCloserThanLength_ReturnsFalse()
     {
         Parameters PARAMETERS = new Parameters(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         Point2D.Double[] POINTS = new Point2D.Double[] {new Point2D.Double(0, 0), new Point2D.Double(0, 4), new Point2D.Double(0, 8)};
