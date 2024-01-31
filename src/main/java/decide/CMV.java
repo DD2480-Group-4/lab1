@@ -117,6 +117,17 @@ public class CMV {
     }
 
     public boolean LIC3() {
+
+        for(int i = 0; i < NUMPOINTS - 2; i++)
+        {
+            double area = Utilities.calculateTriangleArea(POINTS[i], POINTS[i+1], POINTS[i+2]);
+
+            if(area > PARAMETERS.AREA1())
+            {
+                return true;
+            }
+        }
+
         return false;
     }
 

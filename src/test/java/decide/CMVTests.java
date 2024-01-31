@@ -106,5 +106,35 @@ public class CMVTests {
 		)
 		);
 		Assertions.assertThat(cmv.LIC2()).isFalse();
+	}	
+	
+	@Test
+	@DisplayName("LIC3: satisfied returns true")
+	void LIC3_Simple_ReturnsTrue() {
+		var points = new Point2D.Double[] {
+			new Point2D.Double(1, 0),
+			new Point2D.Double(0, 0),
+			new Point2D.Double(0, 1)
+		};
+		CMV cmv = new CMV(points.length, points, new Parameters(
+				0,0,0,0,0, 0.49,0,0,0,
+				0,0,0,0,0,0,0,0,0,0
+		));
+		Assertions.assertThat(cmv.LIC3()).isTrue();
+	}
+
+	@Test
+	@DisplayName("LIC3: unsatisfied returns false")
+	void LIC3_Simple_ReturnsFalse() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(1, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 1)
+		};
+		CMV cmv = new CMV(points.length, points, new Parameters(
+				0,0,0,0,0, 0.5,0,0,0,
+				0,0,0,0,0,0,0,0,0,0
+		));
+		Assertions.assertThat(cmv.LIC3()).isFalse();
 	}
 }
