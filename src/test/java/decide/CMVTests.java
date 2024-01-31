@@ -441,7 +441,7 @@ public class CMVTests {
 
     @Test
     @DisplayName("LIC14: unsatisfied first condition returns false")
-    void LIC14_SeparatedDataPointsHasTriangularAreaGreaterThanArea1AndLesserThanArea2_ReturnsFalse() {
+    void LIC14_SeparatedDataPointsHasTriangularAreaNotGreaterThanArea1AndLesserThanArea2_ReturnsFalse() {
         Parameters PARAMETERS = new Parameters(0,0,0,0,0,2.01,0.51,0,0,0,0,0,0,0,0,0,2,3,0);
         Point2D.Double[] POINTS = {
                 new Point2D.Double(0, 0),
