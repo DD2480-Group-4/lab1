@@ -136,5 +136,27 @@ public class CMVTests {
 				0,0,0,0,0,0,0,0,0,0
 		));
 		Assertions.assertThat(cmv.LIC3()).isFalse();
-	}
+	}    
+	
+	@Test
+    @DisplayName("LIC5: satisfied condition returns true")
+    void LIC5_distanceBetweenNextPointAndCurrentPointLessThanZero_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Point2D.Double[] POINTS = new Point2D.Double[] {
+                new Point2D.Double(2, 0),
+                new Point2D.Double(1, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC5()).isTrue();
+    }
+
+    @Test
+    @DisplayName("LIC5: unsatisfied condition returns false")
+    void LIC5_distanceBetweenNextPointAndCurrentPointNotLessThanZero_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Point2D.Double[] POINTS = new Point2D.Double[] {
+                new Point2D.Double(1, 0),
+                new Point2D.Double(2, 0)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC5()).isFalse();
+    }
 }
