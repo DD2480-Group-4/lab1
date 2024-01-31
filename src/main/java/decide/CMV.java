@@ -154,14 +154,18 @@ public class CMV {
                 int quadrantNumber = Utilities.getQuadrant(POINTS[j]);
                 filledQuadrants[quadrantNumber - 1] = true;
             }
+
+            int filledQuadrantsCounter = 0;
+            for (boolean filled : filledQuadrants) {
+                filledQuadrantsCounter += filled ? 1 : 0;
+            }
+
+            if(filledQuadrantsCounter > PARAMETERS.QUADS()) {
+                return true;
+            }
         }
 
-        int filledQuadrantsCounter = 0;
-        for (boolean filled : filledQuadrants) {
-            filledQuadrantsCounter += filled ? 1 : 0;
-        }
-
-        return filledQuadrantsCounter > PARAMETERS.QUADS();
+        return false;
     }
 
     /**
