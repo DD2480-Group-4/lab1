@@ -11,9 +11,6 @@ public class Main {
 		LCMOperators[][] LCM = new LCMOperators[15][15];
 		boolean[] PUV = new boolean[15];
 		DECIDE(POINTS.length, POINTS, PARAMETERS, LCM, PUV);
-		CMV cvmcalc = new CMV(0, POINTS, PARAMETERS);
-		cvmcalc.calcCMV();
-
 	}
 
 	public static void DECIDE(int NUMPOINTS, Point2D.Double[] POINTS, Parameters PARAMETERS, LCMOperators[][] LCM, boolean[] PUV) {}
