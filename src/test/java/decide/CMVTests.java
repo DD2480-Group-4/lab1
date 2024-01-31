@@ -229,5 +229,37 @@ public class CMVTests {
                 new Point2D.Double(10, 10)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
+    }    
+	
+	@Test
+    @DisplayName("LIC9: satisfied condition returns true")
+    void LIC9_threeSeparatedDataPointsFormSatisfiedAngle_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0);
+		Point2D.Double[] POINTS = {
+                new Point2D.Double(0,0),
+                new Point2D.Double(0,0),
+                new Point2D.Double(0,0),
+                new Point2D.Double(-10,0),
+                new Point2D.Double(0,0),
+                new Point2D.Double(0,10)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        // 45-degree angle should be larger than (PI + 1)
+        Assertions.assertThat(cmv.LIC9()).isTrue();
+    }
+
+    @Test
+    @DisplayName("LIC9: unsatisfied condition returns false")
+    void LIC9_threeSeparatedDataPointsFormUnsatisfiedAngle_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0);
+		Point2D.Double[] POINTS = {
+                new Point2D.Double(0,0),
+                new Point2D.Double(0,0),
+                new Point2D.Double(0,0),
+                new Point2D.Double(-10,0),
+                new Point2D.Double(0,0),
+                new Point2D.Double(0,10)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        // 45-degree angle should not be larger than (PI + 45)
+        Assertions.assertThat(cmv.LIC9()).isFalse();
     }
 }
