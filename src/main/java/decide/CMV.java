@@ -270,10 +270,10 @@ public class CMV {
             return false;
         }
 
-        for (int i = 0; i < POINTS.length - PARAMETERS.A_PTS() - PARAMETERS.B_PTS(); i++) {
+        for (int i = 0; i < NUMPOINTS - (PARAMETERS.A_PTS() + PARAMETERS.B_PTS() + 2); i++) {
             Point2D.Double p1 = POINTS[i];
-            Point2D.Double p2 = POINTS[i + PARAMETERS.A_PTS()];
-            Point2D.Double p3 = POINTS[i + PARAMETERS.A_PTS() + PARAMETERS.B_PTS()];
+            Point2D.Double p2 = POINTS[i + PARAMETERS.A_PTS() + 1];
+            Point2D.Double p3 = POINTS[i + PARAMETERS.A_PTS() + PARAMETERS.B_PTS() + 2];
 
             double a = p1.distance(p2);
             double b = p2.distance(p3);

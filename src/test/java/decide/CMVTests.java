@@ -300,8 +300,8 @@ public class CMVTests {
 				new Point2D.Double(-6, 3),
 				new Point2D.Double(0, 0),
 				new Point2D.Double(0, 0),
-				new Point2D.Double(-3, 2),
 				new Point2D.Double(0, 0),
+				new Point2D.Double(-3, 2),
 				new Point2D.Double(0, 3),
 				new Point2D.Double(0, 0),
 				new Point2D.Double(0, 0),
@@ -322,8 +322,8 @@ public class CMVTests {
 				new Point2D.Double(-6, 3),
 				new Point2D.Double(0, 0),
 				new Point2D.Double(0, 0),
-				new Point2D.Double(-3, 2),
 				new Point2D.Double(0, 0),
+				new Point2D.Double(-3, 2),
 				new Point2D.Double(0, 3),
 				new Point2D.Double(0, 0),
 				new Point2D.Double(0, 0),
@@ -331,7 +331,7 @@ public class CMVTests {
 				new Point2D.Double(0, 0),
 		};
 
-		Parameters PARAMETERS = new Parameters(0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0);
+		Parameters PARAMETERS = new Parameters(0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 0, 0, 0, 0, 0);
 		CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
 
 		Assertions.assertThat(cmv.LIC8()).isFalse();
