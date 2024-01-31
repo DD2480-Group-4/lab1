@@ -379,7 +379,7 @@ public class CMV {
      * LIC12: Function that verifies that there is at least one set of consecutive
      * points separated by PARAMETERS.K_PTS apart where the distance between them
      * exceeds PARAMETERS.LENGTH1. Also, there exists a similar pair where the
-     * distance exceeds PARAMETERS.LENGTH2.
+     * distance is less then PARAMETERS.LENGTH2.
      *
      * @return true if both of the conditions mentioned above hold, false otherwise
      */
