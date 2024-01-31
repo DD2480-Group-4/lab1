@@ -298,4 +298,51 @@ public class CMVTests {
         );
         Assertions.assertThat(cmv.LIC9()).isFalse();
     }	
+
+	@Test
+    @DisplayName("LIC10: satisfied condition returns true")
+    void LIC10_SeparatedDataPointsHasTriangularAreaGreaterThanArea1_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,1.99,0,0,0,0,0,0,0,0,0,0,2,3,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(5, 2),
+                new Point2D.Double(2, 8),
+                new Point2D.Double(4, 0),
+                new Point2D.Double(-2, -6),
+                new Point2D.Double(-2, 2),
+                new Point2D.Double(-2, 5),
+                new Point2D.Double(2, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC10()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("LIC10: unsatisfied condition returns false")
+    void LIC10_NoSeparatedDataPointsHasTriangularAreaGreaterThanArea1_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,3,2,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(5, 2),
+                new Point2D.Double(-2, 5),
+                new Point2D.Double(2, 8),
+                new Point2D.Double(4, 0),
+                new Point2D.Double(-2, -6),
+                new Point2D.Double(-2, 2),
+                new Point2D.Double(2, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC10()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("LIC10: unsatisfied amount of numpoints returns false")
+    void LIC10_NumpointsLessThanFive_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1,1,0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(1, 1),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(2, 2),
+                new Point2D.Double(1, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC10()).isEqualTo(false);
+    }
 }
