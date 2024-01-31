@@ -252,7 +252,7 @@ public class CMV {
 
             double cosTheta = dotProduct / (magnitude1 * magnitude2);
 
-            double angle = Math.toDegrees(Math.acos(cosTheta));
+            double angle = Math.acos(cosTheta);
 
             if (angle < (PI - PARAMETERS.EPSILON()) || angle > (PI + PARAMETERS.EPSILON()))
             {
