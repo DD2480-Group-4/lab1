@@ -4,9 +4,13 @@ package decide;
 public class Launch {
 
     public static boolean[][] calcPUM(LCMOperators[][] lcm, boolean[] cmv) {
-        boolean[][] pum = new boolean[15][15];
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
+        boolean[][] pum = new boolean[lcm.length][lcm.length];
+        for (int i = 0; i < lcm.length; i++) {
+            for (int j = 0; j < lcm.length; j++) {
+
+                if (i == j) {
+                    continue;
+                }
                 if (lcm[i][j] == LCMOperators.ANDD) {
                     pum[i][j] = (cmv[i] && cmv[j]);
                 } else if (lcm[i][j] == LCMOperators.ORR) {
