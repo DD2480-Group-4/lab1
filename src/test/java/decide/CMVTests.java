@@ -7,6 +7,12 @@ import java.awt.geom.Point2D;
 
 public class CMVTests {
 
+    /**
+     * LIC0 Test:
+     * Three points are given, all except the last is 4 units apart from the next point.
+     * Parameter LENGTH1 is set to 3.
+     * LIC0 is expected to return true.
+     */
     @Test
     @DisplayName("LIC0: satisfied condition returns true")
     void LIC0_ConsecutiveDataPointsFurtherThanLength_ReturnsTrue()
@@ -19,6 +25,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC0()).isTrue();
     }
 
+    /**
+     * LIC0 Test:
+     * Three points are given, all except the last is 4 units apart from the next point.
+     * Parameter LENGTH1 is set to 5.
+     * LIC0 is expected to return false.
+     */
     @Test
     @DisplayName("LIC0: satisfied condition returns false")
     void LIC0_ConsecutiveDataPointsCloserThanLength_ReturnsFalse()
@@ -31,6 +43,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC0()).isFalse();
     }
 
+    /**
+     * LIC1 Test:
+     * Four points are given. The first three points form a circle with a radius of 12.5 units.
+     * Parameter RADIUS1 is set to 5.
+     * LIC1 is expected to return true.
+     */
     @Test
     @DisplayName("LIC1: satisfied condition returns true")
     void LIC1_DataPointsCannotFitInCircle_ReturnsTrue() {
@@ -44,6 +62,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC1()).isEqualTo(true);
     }
 
+    /**
+     * LIC1 Test:
+     * Four points are given. 
+     * The first three points form a circle with a radius of 0.13 units.
+     * The last three points for a circle with a radius of 0.16 units.
+     * Parameter RADIUS1 is set to 1.
+     * LIC1 is expected to return false.
+     */
     @Test
     @DisplayName("LIC1: unsatisfied condition returns false")
     void LIC1_DataPointsAlwaysFitInCircle_ReturnsFalse() {
@@ -57,6 +83,11 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC1()).isEqualTo(false);
     }
 
+    /**
+     * LIC2 Test:
+     * Three points are given. Two of the points are the same, causing the angle to be undefined.
+     * LIC2 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC2: undefined angle returns false")
 	void LIC2_UndefinedAngle_ReturnsFalse() {
@@ -74,6 +105,12 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC2()).isFalse();
 	}
 
+    /**
+     * LIC2 Test:
+     * Three points are given which forms an angle just below PI/2.
+     * Parameter EPSILON is set to PI/2.
+     * LIC2 is expected to return true.
+     */
 	@Test
 	@DisplayName("LIC2: satisfied general-case")
 	void LIC2_GeneralCase_ReturnsTrue() {
@@ -91,6 +128,12 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC2()).isTrue();
 	}
 
+    /**
+     * LIC2 Test:
+     * Three points are given which forms an angle of PI/2.
+     * Parameter EPSILON is set to PI/2.
+     * LIC2 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC2: unsatisfied general-case")
 	void LIC2_GeneralCase_ReturnsFalse() {
