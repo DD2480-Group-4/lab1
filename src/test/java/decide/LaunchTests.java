@@ -70,4 +70,27 @@ public class LaunchTests {
         Assertions.assertThat(pum).isNotEqualTo(keyPUM);
     }
 
+	@Test
+	@DisplayName("FUV generation: test based on criteria in lab description")
+	void calcFUV_ShouldPass() {
+
+		boolean[][] pum = {
+				{false, true, true, true},
+				{true, false, false, false},
+				{true, true, true, true},
+				{true, true, false, false}};
+
+		boolean[] puv = {true, false, true, true};
+
+		boolean[] keyFUV = {true, true, true, false};
+
+		boolean[] fuv = Launch.calcFUV(pum, puv);
+		// E.g. fuv[0] is true because all values in pum[0][j] except j=0 are true
+		// fuv[1] is true because puv[1] is false
+		// fuv[2] is true based on the same logic as fuv[0],
+		// but also shows that the values on the diagonal of pum are irrelevant
+		// fuv[3] is false because not all values in pum[0][j] except j=0 are true
+		Assertions.assertThat(fuv).isEqualTo(keyFUV);
+	}
+
 }
