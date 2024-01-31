@@ -1,8 +1,8 @@
 package decide;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.assertj.core.api.Assertions;
 import java.awt.geom.Point2D;
 
 public class CMVTests {
@@ -57,4 +57,54 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC1()).isEqualTo(false);
     }
 
+	@Test
+	@DisplayName("LIC2: undefined angle returns false")
+	void LIC2_UndefinedAngle_ReturnsFalse() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(0,1),
+				new Point2D.Double(0,0),
+				new Point2D.Double(0,0)
+		};
+		CMV cmv = new CMV(
+				points.length, points, new Parameters(
+						0,0,0,0,0,0,0,0,0,
+						0,0,0,0,0,0,0,0,0,0
+				)
+		);
+		Assertions.assertThat(cmv.LIC2()).isFalse();
+	}
+
+	@Test
+	@DisplayName("LIC2: satisfied general-case")
+	void LIC2_GeneralCase_ReturnsTrue() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(1,0.001),
+				new Point2D.Double(0,0),
+				new Point2D.Double(0,1)
+		};
+		CMV cmv = new CMV(
+				points.length, points, new Parameters(
+				0,0,0,0,Math.PI/2,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0
+		)
+		);
+		Assertions.assertThat(cmv.LIC2()).isTrue();
+	}
+
+	@Test
+	@DisplayName("LIC2: unsatisfied general-case")
+	void LIC2_GeneralCase_ReturnsFalse() {
+		var points = new Point2D.Double[]{
+				new Point2D.Double(1, 0),
+				new Point2D.Double(0, 0),
+				new Point2D.Double(0, 1)
+		};
+		CMV cmv = new CMV(
+				points.length, points, new Parameters(
+				0, 0, 0, 0, Math.PI/2, 0, 0, 0, 0,
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+		)
+		);
+		Assertions.assertThat(cmv.LIC2()).isFalse();
+	}
 }
