@@ -43,4 +43,23 @@ public class Utilities {
         return false;
     }
 
+    /**
+     * Helper function that determines which quadrant a point lies in. Ambiguity is
+     * solved by prioritizing quadrant number. Quadrants are numbered 1 to 4.
+     *
+     * @param Point2D.Double data point
+     * @return the quadrant number (1-4)
+     */
+    public static int getQuadrant(Point2D.Double p) {
+        if (p.x >= 0 && p.y >= 0) {
+            return 1;
+        } else if (p.x < 0 && p.y >= 0) {
+            return 2;
+        } else if (p.x <= 0 && p.y < 0) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+
 }
