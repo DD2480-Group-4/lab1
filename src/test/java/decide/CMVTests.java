@@ -229,5 +229,43 @@ public class CMVTests {
                 new Point2D.Double(10, 10)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
+    }    
+	
+	@Test
+    @DisplayName("LIC9: satisfied general-case")
+    void LIC9_GeneralCase_ReturnsTrue() {
+        var points = new Point2D.Double[]{
+                new Point2D.Double(1, 0.001),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 1),
+                new Point2D.Double(0, 1),
+                new Point2D.Double(0, 1)
+        };
+        CMV cmv = new CMV(
+                points.length, points, new Parameters(
+                0, 0, 0, 0, Math.PI / 2, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        )
+        );
+        Assertions.assertThat(cmv.LIC9()).isTrue();
+    }
+
+    @Test
+    @DisplayName("LIC9: unsatisfied general-case")
+    void LIC9_GeneralCase_ReturnsFalse() {
+        var points = new Point2D.Double[]{
+                new Point2D.Double(1, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(-1, 3),
+                new Point2D.Double(-100, 1),
+                new Point2D.Double(-200, 1)
+        };
+        CMV cmv = new CMV(
+                points.length, points, new Parameters(
+                0, 0, 0, 0, Math.PI / 2, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        )
+        );
+        Assertions.assertThat(cmv.LIC9()).isFalse();
     }
 }
