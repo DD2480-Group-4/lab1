@@ -374,5 +374,50 @@ public class CMVTests {
 				0,0,0,0,0,0,0,0,0,1
 		));
 		Assertions.assertThat(cmv.LIC11()).isFalse();
-	}
+	}    
+    
+    @Test
+    @DisplayName("LIC13: both conditions satisfied returns true")
+    void LIC13_threePointsCannotFitInCircleWithRADIUS1butRADIUS2_ReturnsTrue() {
+        Parameters PARAMETERS = new Parameters(0, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(111, 111),
+                new Point2D.Double(222, 222),
+                new Point2D.Double(1, 1),
+                new Point2D.Double(333, 333),
+                new Point2D.Double(-2, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC13()).isTrue();
+    }
+
+    @Test
+    @DisplayName("LIC13: unsatisfied first condition returns false")
+    void LIC13_threePointsCanFitInCircleWithRADIUS1_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0, 0, 10, 2, 1, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(111, 111),
+                new Point2D.Double(222, 222),
+                new Point2D.Double(1, 1),
+                new Point2D.Double(333, 333),
+                new Point2D.Double(-2, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC13()).isFalse();
+    }
+
+    @Test
+    @DisplayName("LIC13: unsatisfied second condition returns false")
+    void LIC13_threePointsCannotFitInCircleWithRADIUS2_ReturnsFalse() {
+        Parameters PARAMETERS = new Parameters(0, 0, 10, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0);
+        Point2D.Double[] POINTS = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(111, 111),
+                new Point2D.Double(222, 222),
+                new Point2D.Double(1, 1),
+                new Point2D.Double(333, 333),
+                new Point2D.Double(-2, 1)};
+        CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
+        Assertions.assertThat(cmv.LIC13()).isFalse();
+    }
 }
