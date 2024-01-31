@@ -294,6 +294,17 @@ public class CMV {
     }
 
     public boolean LIC11() {
+
+        if(NUMPOINTS < 3) {
+            return false;
+        }
+        
+        for(int i = 0; i < NUMPOINTS - PARAMETERS.G_PTS() - 1; i++) {
+            if(POINTS[i + PARAMETERS.G_PTS() + 1].getX() - POINTS[i].getX() < 0) {
+                return true;
+            }
+        }
+
         return false;
     }
 

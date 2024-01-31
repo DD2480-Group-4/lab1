@@ -344,5 +344,35 @@ public class CMVTests {
                 new Point2D.Double(1, 1)};
         CMV cmv = new CMV(POINTS.length, POINTS, PARAMETERS);
         Assertions.assertThat(cmv.LIC10()).isEqualTo(false);
-    }
+    }	
+    
+    @Test
+	@DisplayName("LIC11: satisfied returns true")
+	void LIC11_Simple_ReturnsTrue() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(1, 0),
+				new Point2D.Double(2, 0),
+				new Point2D.Double(0, 0)
+		};
+		CMV cmv = new CMV(points.length, points, new Parameters(
+				0,0,0,0,0, 0.49,0,0,0,
+				0,0,0,0,0,0,0,0,0,1
+		));
+		Assertions.assertThat(cmv.LIC11()).isTrue();
+	}
+
+	@Test
+	@DisplayName("LIC11: unsatisfied returns false")
+	void LIC11_Simple_ReturnsFalse() {
+		var points = new Point2D.Double[] {
+				new Point2D.Double(0, 0),
+				new Point2D.Double(-1, 0),
+				new Point2D.Double(0, 0)
+		};
+		CMV cmv = new CMV(points.length, points, new Parameters(
+				0,0,0,0,0, 0.5,0,0,0,
+				0,0,0,0,0,0,0,0,0,1
+		));
+		Assertions.assertThat(cmv.LIC11()).isFalse();
+	}
 }
