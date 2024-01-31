@@ -25,7 +25,27 @@ public class Launch {
     }
 
     public static boolean[] calcFUV(boolean[][] pum, boolean[] puv) {
-        return new boolean[15];
+        boolean[] fuv = new boolean[pum.length];
+
+        for (int i = 0; i < pum.length; i++) {
+
+            if (!puv[i]) {
+                fuv[i] = true;
+                continue;
+            }
+
+            for (int j = 0; j < pum.length; j++) {
+
+                if (!pum[i][j] && i != j) {
+                    fuv[i] = false;
+                    break;
+                }
+
+                fuv[i] = true;
+
+            }
+        }
+        return fuv;
     }
     
 }
