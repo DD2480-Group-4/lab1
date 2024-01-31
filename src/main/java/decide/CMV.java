@@ -202,6 +202,20 @@ public class CMV {
     }
 
     public boolean LIC7() {
+
+        if(NUMPOINTS < 3)
+        {
+            return false;
+        }
+
+        for(int i = 0; i < NUMPOINTS - PARAMETERS.K_PTS() -1; i++)
+        {
+            if(POINTS[i].distance(POINTS[i + PARAMETERS.K_PTS() + 1]) > PARAMETERS.LENGTH1())
+            {
+                return true;
+            }
+        }
+
         return false;
     }
 
