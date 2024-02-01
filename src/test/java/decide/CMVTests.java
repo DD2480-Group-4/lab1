@@ -107,7 +107,7 @@ public class CMVTests {
 
     /**
      * LIC2 Test:
-     * Three points are given which forms an angle just below PI/2.
+     * Three points are given which forms an angle below PI/2.
      * Parameter EPSILON is set to PI/2.
      * LIC2 is expected to return true.
      */
