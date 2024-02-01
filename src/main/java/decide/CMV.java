@@ -307,6 +307,14 @@ public class CMV {
         {
             return false;
         }
+        if (PARAMETERS.C_PTS() < 1 || PARAMETERS.D_PTS() < 1)
+        {
+            return false;
+        }
+        if ((PARAMETERS.E_PTS() + PARAMETERS.F_PTS()) > (NUMPOINTS - 3))
+        {
+            return false;
+        }
 
         double PI = 3.1415926535;
 

@@ -345,12 +345,12 @@ public class CMVTests {
                 new Point2D.Double(0, 0),
                 new Point2D.Double(0, 1),
                 new Point2D.Double(0, 1),
-                new Point2D.Double(0, 1)
+                new Point2D.Double(3, 1)
         };
         CMV cmv = new CMV(
                 points.length, points, new Parameters(
                 0, 0, 0, 0, Math.PI / 2, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 1, 1, 0, 0, 0
         )
         );
         Assertions.assertThat(cmv.LIC9()).isTrue();
@@ -369,7 +369,7 @@ public class CMVTests {
         CMV cmv = new CMV(
                 points.length, points, new Parameters(
                 0, 0, 0, 0, Math.PI / 2, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                0, 0, 0, 0, 0, 1, 1, 0, 0, 0
         )
         );
         Assertions.assertThat(cmv.LIC9()).isFalse();
