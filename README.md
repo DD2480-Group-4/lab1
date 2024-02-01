@@ -45,3 +45,10 @@ Implemented LIC3, LIC7, and LIC11.
 Created tests for LIC0, LIC4, LIC8, and LIC12.  
 Reviewed and merged LIC1, LIC5, LIC9, and LIC13.  
 Wrote documentation for various tests.  
+
+
+### Prideful Remark
+We divided the work in a very structured manner.
+Every LIC has been seen by 3 people (coder, tester, reviewer).
+Our GitHub history looks really nice.
+Project was built on a well-structured code skeleton.
