@@ -4,7 +4,7 @@ package decide;
 import java.awt.geom.Point2D;
 
 public class Main {
-    private static final int minimumLength = 15;
+    private static final int inputLength = 15;
 
 	public static void main(String[] args) {
         // Input for DECIDE()
@@ -105,13 +105,13 @@ public class Main {
 	}
 
 	public static void DECIDE(int NUMPOINTS, Point2D.Double[] POINTS, Parameters PARAMETERS, LCMOperators[][] LCM, boolean[] PUV) {
-        if (LCM.length < minimumLength) {
+        if (LCM.length != inputLength) {
             int columnLength = (LCM.length > 0 && LCM[0] != null) ? LCM[0].length : 0;
             System.err.println("ERROR: LCM does not follow the dimension specification (15x15). " +
                                "Found: (" + LCM.length + "x" + columnLength + ").");
             return;
         }
-        if (PUV.length < minimumLength) {
+        if (PUV.length != inputLength) {
             System.err.print("ERROR: PUV does not follow the dimension specification (15). " +
                              "Found: (" + PUV.length + ").");
             return;
