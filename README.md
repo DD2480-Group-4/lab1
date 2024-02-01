@@ -45,7 +45,7 @@ Implemented LIC3, LIC7, and LIC11.
 Created tests for LIC0, LIC4, LIC8, and LIC12.  
 Reviewed and merged LIC1, LIC5, LIC9, and LIC13.  
 Wrote documentation for various tests.  
-
+Investigated Maven, Gradle and JUnit.
 
 ### Prideful Remark
 We divided the work in a very structured manner.
