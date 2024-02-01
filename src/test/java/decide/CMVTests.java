@@ -423,6 +423,13 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC7()).isFalse();
 	}
 
+    /**
+     * LIC8 Test:
+     * 10 Points are given.
+     * The first, fifth and eight points form circle with a radius of 12.75 units.
+     * Parameters RADIUS1 is set to 4, A_PTS to 3, and B_PTS to 2.
+     * LIC8 is expected to return true.
+     */
 	@Test
 	@DisplayName("LIC8: satisfied condition returns true")
 	void LIC8_SeparatedPointsOutsideOfRadius_ReturnsTrue() {
@@ -445,6 +452,13 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC8()).isTrue();
 	}
 
+    /**
+     * LIC8 Test:
+     * 10 Points are given.
+     * The first, fifth and eight points form circle with a radius of 12.75 units.
+     * Parameters RADIUS1 is set to 13, A_PTS to 3, and B_PTS to 2.
+     * LIC8 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC8: unsatisfied condition returns false")
 	void LIC8_SeparatedPointsInsideOfRadius_ReturnsFalse() {
