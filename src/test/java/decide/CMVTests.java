@@ -151,6 +151,12 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC2()).isFalse();
 	}
 
+    /**
+     * LIC3 Test:
+     * Three points are given which forms a triangle with an area of 0.5 units. 
+     * Parameter AREA1 is set to 0.49.
+     * LIC3 is expected to return true.
+     */
 	@Test
 	@DisplayName("LIC3: satisfied returns true")
 	void LIC3_Simple_ReturnsTrue() {
@@ -166,6 +172,12 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC3()).isTrue();
 	}
 
+    /**
+     * LIC3 Test:
+     * Three points are given which forms a triangle with an area of 0.5 units.
+     * Parameter AREA1 is set to 0.5.
+     * LIC3 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC3: unsatisfied returns false")
 	void LIC3_Simple_ReturnsFalse() {
@@ -181,6 +193,12 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC3()).isFalse();
 	}
 
+    /**
+     * LIC4 Test:
+     * Three points are given which lies quadrants 1, 3 and 4.
+     * Parameters QUADS is set to 2 and QUADS is set to 3.
+     * LIC4 is expected to return true.
+     */
     @Test
     @DisplayName("LIC4: satisfied condition returns true")
     void LIC4_PointsLieInMoreThanQuadQuadrants_ReturnsTrue()
@@ -197,6 +215,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC4()).isTrue();
     }
 
+    /**
+     * LIC4 Test:
+     * Three points are given which lies quadrants 1, 3 and 4.
+     * Parameters QUADS is set to 3 and QUADS is set to 3.
+     * LIC4 is expected to return false.
+     */
     @Test
     @DisplayName("LIC4: satisfied condition returns false")
     void LIC4_PointsLieInLessThanQuadQuadrants_ReturnsFalse()
@@ -213,6 +237,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC4()).isFalse();
     }
 
+    /**
+     * LIC5 Test:
+     * Two points are given. 
+     * The first point is 1 unit ahead of the second on the x-axis.
+     * LIC5 is expected to return true.
+     */
 	@Test
     @DisplayName("LIC5: satisfied condition returns true")
     void LIC5_distanceBetweenNextPointAndCurrentPointLessThanZero_ReturnsTrue() {
@@ -224,6 +254,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC5()).isTrue();
     }
 
+    /**
+     * LIC5 Test:
+     * Two points are given. 
+     * The first point is 1 unit behind of the second on the x-axis.
+     * LIC5 is expected to return true.
+     */
     @Test
     @DisplayName("LIC5: unsatisfied condition returns false")
     void LIC5_distanceBetweenNextPointAndCurrentPointNotLessThanZero_ReturnsFalse() {
@@ -235,6 +271,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC5()).isFalse();
     }
 
+    /**
+     * LIC6 Test:
+     * Seven points are given.
+     * The second and sixth point are joined on the line y = 0.
+     * The fourth point is 10.1 units away from this line. 
+     * The parameters DIST is set to 10 and N_PTS is set to 5.
+     * LIC6 is expected to return true.
+     */
 	@Test
     @DisplayName("LIC6: satisfied first condition returns true")
     void LIC6_DataPointFurtherAwayThanDist_ReturnsTrue() {
@@ -251,6 +295,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC6()).isEqualTo(true);
     }
 
+    /**
+     * LIC6 Test:
+     * Five points are given.
+     * The first and fifth points are identical. 
+     * The distance to all other points are 7 units. 
+     * The parameters DIST is set to 5 and N_PTS is set to 5.
+     * LIC6 is expected to return true.
+     */
     @Test
     @DisplayName("LIC6: satisfied second condition returns true")
     void LIC6_SumDistDataPointFurtherAwayThanDist_ReturnsTrue() {
@@ -265,6 +317,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC6()).isEqualTo(true);
     }
 
+    /**
+     * LIC6 Test:
+     * Seven points are given.
+     * The second and sixth point are joined on the line y = 0.
+     * The fourth point is 10 units away from this line, no other point is further away than this. 
+     * The parameters DIST is set to 10 and N_PTS is set to 5.
+     * LIC6 is expected to return false.
+     */
     @Test
     @DisplayName("LIC6: unsatisfied first condition returns false")
     void LIC6_NoDataPointFurtherAwayThanDist_ReturnsFalse() {
@@ -281,6 +341,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
     }
 
+    /**
+     * LIC6 Test:
+     * Five points are given.
+     * The first and fifth points are identical. 
+     * The distance to all other points are 5 units. 
+     * The parameters DIST is set to 5 and N_PTS is set to 5.
+     * LIC6 is expected to return false.
+     */
     @Test
     @DisplayName("LIC6: unsatisfied second condition returns false")
     void LIC6_NotSumDistAllDataPointFurtherAwayThanDist_ReturnsFalse() {
@@ -295,6 +363,11 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
     }
 
+    /**
+     * LIC6 Test:
+     * Two points are given, which is less than the required amount of points.
+     * LIC6 is expected to return false.
+     */
     @Test
     @DisplayName("LIC6: unsatisfied amount of numpoints returns false")
     void LIC6_NumpointsLessThanThree_ReturnsFalse() {
@@ -306,6 +379,13 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC6()).isEqualTo(false);
     }
 
+    /**
+     * LIC7 Test:
+     * Three points are given.
+     * The first and third point are separated by 10.1 units.
+     * Parameters LENGTH1 is set to 10 and K_PTS is set to 1.
+     * LIC7 is expected to return true.
+     */
 	@Test
 	@DisplayName("LIC7: satisfied returns true")
 	void LIC7_GeneralCase_ReturnsTrue() {
@@ -321,6 +401,13 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC7()).isTrue();
 	}
 
+    /**
+     * LIC7 Test:
+     * Three points are given.
+     * The first and third point are separated by 10 units.
+     * Parameters LENGTH1 is set to 10 and K_PTS is set to 1.
+     * LIC7 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC7: unsatisfied returns false")
 	void LIC7_GeneralCase_ReturnsFalse() {
