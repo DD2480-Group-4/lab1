@@ -68,4 +68,54 @@ public class UtilitiesTests {
         }
     }
 
+    @Test
+    @DisplayName("checkPointsForTriangle: Correct Results")
+    void checkPointsForTriangle_CorrectResult() {
+        Point2D.Double[] points = {
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(1, 0),
+                new Point2D.Double(1, 0),
+                new Point2D.Double(1, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 0),
+                new Point2D.Double(0, 1),
+                new Point2D.Double(0, 0.1)
+        };
+        //Checks point 0, 2, and 9.
+        Assertions.assertThat(
+                Utilities.checkPointsForTriangle(
+                        points, points.length, 1, 6, area -> area == 0.5
+                )
+        ).isTrue();
+        //Checks point 1, 3 and 9.
+        Assertions.assertThat(
+                Utilities.checkPointsForTriangle(
+                        points, points.length, 1, 5, area -> area == 0.5
+                )
+        ).isTrue();
+
+        //Checks point 0, 2 and 10.
+        Assertions.assertThat(
+                Utilities.checkPointsForTriangle(
+                        points, points.length, 1, 7, area -> area == 0.05
+                )
+        ).isTrue();
+
+        //Check point 4, 7 and 10.
+        Assertions.assertThat(
+                Utilities.checkPointsForTriangle(
+                        points, points.length, 2, 2, area -> area == 0.05
+                )
+        ).isTrue();
+
+        //No sequence with only 1-wide gaps.
+        Assertions.assertThat(
+                Utilities.checkPointsForTriangle(
+                        points, points.length, 1, 1, area -> area > 0
+                )
+        ).isFalse();
+    }
 }
