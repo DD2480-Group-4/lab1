@@ -7,6 +7,11 @@ import java.awt.geom.Point2D;
 
 public class UtilitiesTests {
 
+    /**
+     * calculateTriangleArea Test:
+     * Three integer points are given, forming an area of 2.
+     * calculateTriangleArea is therefore expected to return 2.
+     */
     @Test
     @DisplayName("calculateTriangleArea: Integer Vertices")
     void calculateTriangleArea_IntegerVertices_CalculatesAreaCorrect()
@@ -20,6 +25,11 @@ public class UtilitiesTests {
         Assertions.assertThat(area).isEqualTo(2);
     }
 
+    /**
+     * calculateTriangleArea Test:
+     * Three decimal points are given, forming an area of 4.275.
+     * calculateTriangleArea is therefore expected to return 4.275.
+     */
     @Test
     @DisplayName("calculateTriangleArea: Decimal Vertices")
     void calculateTriangleArea_DecimalVertices_CalculatesAreaCorrect()
@@ -33,6 +43,13 @@ public class UtilitiesTests {
         Assertions.assertThat(area).isEqualTo(4.275);
     }
 
+    /**
+     * getQuadrant Test:
+     * 9 points are given in an array.
+     * The quadrant number of each point is defined in another array with matching indices.
+     * A for loop asserts that each point is in the associated quadrant.
+     * The test fails if any point is not in the quadrant specified.
+     */
     @Test
     @DisplayName("getQuadrant success")
     void getQuadrant_CalculatesQuadrantNumberCorrect() {
@@ -53,6 +70,13 @@ public class UtilitiesTests {
         }
     }
 
+    /**
+     * getQuadrant Test:
+     * 4 points are given in an array.
+     * An incorrect quadrant number for each point is defined in another array.
+     * A for loop asserts that each point is not in the associated quadrant.
+     * The test fails if any point is in the quadrant specified.
+     */
     @Test
     @DisplayName("getQuadrant fail")
     void getQuadrant_CalculatesQuadrantNumberIncorrect() {
