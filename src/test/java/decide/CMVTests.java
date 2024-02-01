@@ -32,7 +32,7 @@ public class CMVTests {
      * LIC0 is expected to return false.
      */
     @Test
-    @DisplayName("LIC0: satisfied condition returns false")
+    @DisplayName("LIC0: unsatisfied condition returns false")
     void LIC0_ConsecutiveDataPointsCloserThanLength_ReturnsFalse()
     {
         Parameters PARAMETERS = new Parameters(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -222,7 +222,7 @@ public class CMVTests {
      * LIC4 is expected to return false.
      */
     @Test
-    @DisplayName("LIC4: satisfied condition returns false")
+    @DisplayName("LIC4: unsatisfied condition returns false")
     void LIC4_PointsLieInLessThanQuadQuadrants_ReturnsFalse()
     {
         Point2D.Double[] POINTS = new Point2D.Double[] {
@@ -446,7 +446,7 @@ public class CMVTests {
 	}
 
 	@Test
-	@DisplayName("LIC8: satisfied condition returns false")
+	@DisplayName("LIC8: unsatisfied condition returns false")
 	void LIC8_SeparatedPointsInsideOfRadius_ReturnsFalse() {
 		Point2D.Double[] POINTS = new Point2D.Double[] {
 				new Point2D.Double(-6, 3),
@@ -600,7 +600,7 @@ public class CMVTests {
 	}
 
 	@Test
-	@DisplayName("LIC12: satisfied condition returns false")
+	@DisplayName("LIC12: unsatisfied condition returns false")
 	void LIC12_FirstConditionsFalse_ReturnsFalse()
 	{
 		Point2D.Double[] POINTS = new Point2D.Double[] {
