@@ -68,6 +68,12 @@ public class UtilitiesTests {
         }
     }
 
+    /**
+     * checkPointsForTriangle Test:
+     * Ten points are given, with many possible combinations that form triangles.
+     * Many different spacings are used to find a few different combinations in order to check that the area matches exactly the expected area.
+     * Please see the code for the individual points that are sought.
+     */
     @Test
     @DisplayName("checkPointsForTriangle: Correct Results")
     void checkPointsForTriangle_CorrectResult() {
