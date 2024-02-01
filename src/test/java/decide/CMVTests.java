@@ -481,6 +481,13 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC8()).isFalse();
 	}
 
+    /**
+     * LIC9  Test:
+     * Five points are given.
+     * The first, third, and fifth which forms an angle below PI/2.
+     * Parameters EPSILON is set to PI/2, C_PTS to 1, and D_PTS to 1.
+     * LIC9 is expected to return true.
+     */
 	@Test
     @DisplayName("LIC9: satisfied general-case")
     void LIC9_GeneralCase_ReturnsTrue() {
@@ -500,6 +507,13 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC9()).isTrue();
     }
 
+    /**
+     * LIC9 Test:
+     * Five points are given.
+     * The first, third, and fifth which forms an angle larger than PI/2 but smaller than 3PI/2.
+     * Parameters EPSILON is set to PI/2, C_PTS to 1, and D_PTS to 1.
+     * LIC9 is expected to return false.
+     */
     @Test
     @DisplayName("LIC9: unsatisfied general-case")
     void LIC9_GeneralCase_ReturnsFalse() {
@@ -519,6 +533,13 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC9()).isFalse();
     }
 
+    /**
+     * LIC10 Test:  
+     * Eight points are given.
+     * The first, fourth, and seventh points form a triangle with an area of 2 units.
+     * Parameters AREA1 is set to 1.99, E_PTS to 2, and F_PTS to 3.
+     * LIC10 is expected to return true.
+     */
 	@Test
     @DisplayName("LIC10: satisfied condition returns true")
     void LIC10_SeparatedDataPointsHasTriangularAreaGreaterThanArea1_ReturnsTrue() {
@@ -536,6 +557,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC10()).isEqualTo(true);
     }
 
+    /**
+     * LIC10 Test:  
+     * Eight points are given.
+     * The first, fourth, and seventh points form a triangle with an area of 2 units.
+     * No other combinations of points separated by E_PTS and F_PTS exists. 
+     * Parameters AREA1 is set to 1.99, E_PTS to 3, and F_PTS to 2.
+     * LIC10 is expected to return false.
+     */
     @Test
     @DisplayName("LIC10: unsatisfied condition returns false")
     void LIC10_NoSeparatedDataPointsHasTriangularAreaGreaterThanArea1_ReturnsFalse() {
@@ -553,6 +582,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC10()).isEqualTo(false);
     }
 
+    /**
+     * LIC10 Test:
+     * Four points are given.
+     * Parameters E_PTS to 1 and F_PTS to 1.
+     * LIC10 is expected to return false.
+     */
     @Test
     @DisplayName("LIC10: unsatisfied amount of numpoints returns false")
     void LIC10_NumpointsLessThanFive_ReturnsFalse() {
@@ -566,6 +601,13 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC10()).isEqualTo(false);
     }
 
+    /**
+     * LIC11 Test:
+     * Three points are given.
+     * The first point is 1 unit ahead of the third on the x-axis.
+     * Parameter G_PTS is set to 1.
+     * LIC11 is expected to return true.
+     */
     @Test
 	@DisplayName("LIC11: satisfied returns true")
 	void LIC11_Simple_ReturnsTrue() {
@@ -581,6 +623,13 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC11()).isTrue();
 	}
 
+    /**
+     * LIC11 Test:
+     * Three points are given.
+     * The first point is equal to the third.
+     * Parameter G_PTS is set to 1.
+     * LIC11 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC11: unsatisfied returns false")
 	void LIC11_Simple_ReturnsFalse() {
@@ -596,6 +645,14 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC11()).isFalse();
 	}
 
+    /**
+     * LIC12 Test:
+     * Four points are given.
+     * The first and third points are separated by 4 units. 
+     * The second and fourth points are separated by more than 8.4 units.
+     * Parameters LENGTH1 is set to 7 and LENGTH2 is set to 5.
+     * LIC12 is expected to return true.
+     */
 	@Test
 	@DisplayName("LIC12: satisfied condition returns true")
 	void LIC12_BothConditionsTrue_ReturnsTrue()
@@ -613,6 +670,14 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC12()).isTrue();
 	}
 
+     /**
+     * LIC12 Test:
+     * Four points are given.
+     * The first and third points are separated by 4 units. 
+     * The second and fourth points are separated by more than 8.4 units.
+     * Parameters LENGTH1 is set to 10 and LENGTH2 is set to 5.
+     * LIC12 is expected to return false.
+     */
 	@Test
 	@DisplayName("LIC12: unsatisfied condition returns false")
 	void LIC12_FirstConditionsFalse_ReturnsFalse()
@@ -630,6 +695,13 @@ public class CMVTests {
 		Assertions.assertThat(cmv.LIC12()).isFalse();
 	}
 
+    /**
+     * LIC13 Test:
+     * Six points are given. 
+     * The first, fourth and sixth points form a circle with a radius of 1.58 unit.
+     * Parameters RADIUS1 is set to 1, RADIUS2 is set to 2, A_PTS is set to 2, and B_PTS is set to 1.
+     * LIC13 is expected to return true.
+     */
     @Test
     @DisplayName("LIC13: both conditions satisfied returns true")
     void LIC13_threePointsCannotFitInCircleWithRADIUS1butRADIUS2_ReturnsTrue() {
@@ -645,6 +717,13 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC13()).isTrue();
     }
 
+    /**
+     * LIC13 Test:
+     * Six points are given. 
+     * The first, fourth and sixth points form a circle with a radius of 1.58 unit.
+     * Parameters RADIUS1 is set to 10, RADIUS2 is set to 2, A_PTS is set to 2, and B_PTS is set to 1.
+     * LIC13 is expected to return false.
+     */
     @Test
     @DisplayName("LIC13: unsatisfied first condition returns false")
     void LIC13_threePointsCanFitInCircleWithRADIUS1_ReturnsFalse() {
@@ -660,6 +739,13 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC13()).isFalse();
     }
 
+    /**
+    * LIC13 Test:
+    * Six points are given. 
+    * The first, fourth and sixth points form a circle with a radius of 1.58 unit.
+    * Parameters RADIUS1 is set to 10, RADIUS2 is set to 1, A_PTS is set to 2, and B_PTS is set to 1.
+    * LIC13 is expected to return false.
+    */
     @Test
     @DisplayName("LIC13: unsatisfied second condition returns false")
     void LIC13_threePointsCannotFitInCircleWithRADIUS2_ReturnsFalse() {
@@ -675,6 +761,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC13()).isFalse();
     }
 
+    /**
+     * LIC14 Test:
+     * Nine points are given.
+     * The first, fourth, and seventh points form a triangle with an area of 2 units.
+     * The second, fifth, and eighth points form a triangle with an area of 0.5 units.
+     * Parameters AREA1 is set to 1.99, AREA2 is set to 0.51, E_PTS is set to 2, and F_PTS is set to 3.
+     * LIC14 is expected to return true.
+     */
     @Test
     @DisplayName("LIC14: satisfied conditions returns true")
     void LIC14_SeparatedDataPointsHasTriangularAreaGreaterThanArea1AndLesserThanArea2_ReturnsTrue() {
@@ -693,6 +787,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC14()).isEqualTo(true);
     }
 
+    /**
+     * LIC14 Test:
+     * Nine points are given.
+     * The first, fourth, and seventh points form a triangle with an area of 2 units.
+     * The second, fifth, and eighth points form a triangle with an area of 0.5 units.
+     * Parameters AREA1 is set to 2.01, AREA2 is set to 0.51, E_PTS is set to 2, and F_PTS is set to 3.
+     * LIC14 is expected to return true.
+     */
     @Test
     @DisplayName("LIC14: unsatisfied first condition returns false")
     void LIC14_SeparatedDataPointsHasTriangularAreaNotGreaterThanArea1AndLesserThanArea2_ReturnsFalse() {
@@ -711,6 +813,14 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC14()).isEqualTo(false);
     }
 
+    /**
+     * LIC14 Test:
+     * Nine points are given.
+     * The first, fourth, and seventh points form a triangle with an area of 2 units.
+     * The second, fifth, and eighth points form a triangle with an area of 0.5 units.
+     * Parameters AREA1 is set to 1.99, AREA2 is set to 0.49, E_PTS is set to 2, and F_PTS is set to 3.
+     * LIC14 is expected to return true.
+     */
     @Test
     @DisplayName("LIC14: unsatisfied second condition returns false")
     void LIC14_SeparatedDataPointsHasTriangularAreaGreaterThanArea1AndNotLesserThanArea2_ReturnsFalse() {
@@ -729,6 +839,12 @@ public class CMVTests {
         Assertions.assertThat(cmv.LIC14()).isEqualTo(false);
     }
 
+    /**
+     * LIC14 Test:
+     * Four points are given.
+     * Parameters E_PTS to 1 and F_PTS to 1.
+     * LIC14 is expected to return false.
+     */
     @Test
     @DisplayName("LIC14: unsatisfied amount of numpoints returns false")
     void LIC14_NumpointsLessThanFive_ReturnsFalse() {
