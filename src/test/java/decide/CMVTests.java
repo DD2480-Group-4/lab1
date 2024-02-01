@@ -258,7 +258,7 @@ public class CMVTests {
      * LIC5 Test:
      * Two points are given. 
      * The first point is 1 unit behind of the second on the x-axis.
-     * LIC5 is expected to return true.
+     * LIC5 is expected to return false.
      */
     @Test
     @DisplayName("LIC5: unsatisfied condition returns false")
