@@ -793,7 +793,7 @@ public class CMVTests {
      * The first, fourth, and seventh points form a triangle with an area of 2 units.
      * The second, fifth, and eighth points form a triangle with an area of 0.5 units.
      * Parameters AREA1 is set to 2.01, AREA2 is set to 0.51, E_PTS is set to 2, and F_PTS is set to 3.
-     * LIC14 is expected to return true.
+     * LIC14 is expected to return false.
      */
     @Test
     @DisplayName("LIC14: unsatisfied first condition returns false")
@@ -819,7 +819,7 @@ public class CMVTests {
      * The first, fourth, and seventh points form a triangle with an area of 2 units.
      * The second, fifth, and eighth points form a triangle with an area of 0.5 units.
      * Parameters AREA1 is set to 1.99, AREA2 is set to 0.49, E_PTS is set to 2, and F_PTS is set to 3.
-     * LIC14 is expected to return true.
+     * LIC14 is expected to return false.
      */
     @Test
     @DisplayName("LIC14: unsatisfied second condition returns false")
